@@ -26,7 +26,7 @@ namespace C_Sharp_Stickynotes.Presentation
                 tblPanelStickyNoteList.RowCount++;
                 tblPanelStickyNoteList.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
                 //tblPanelStickyNoteList.Controls.Add(new ListViewStickyNote(stickyNoteModels[i].NoteID, stickyNoteModels[i].NoteText, stickyNoteModels[i].NoteColor), 0, tblPanelStickyNoteList.RowCount--);
-                tblPanelStickyNoteList.Controls.Add(new Button() { Text = "Button" }, 0, tblPanelStickyNoteList.RowCount--);
+                tblPanelStickyNoteList.Controls.Add(new ListViewStickyNote(stickyNoteModels[i].NoteID, stickyNoteModels[i].NoteText, stickyNoteModels[i].NoteColor), 0, tblPanelStickyNoteList.RowCount--);
             }
         }
 

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace C_Sharp_Stickynotes.Presentation
@@ -26,7 +21,6 @@ namespace C_Sharp_Stickynotes.Presentation
             this.noteID = noteID;
             this.noteText = noteText;
             this.noteColor = noteColor;
-
         }
 
         private List<Control> GetAllChildControls(Control parent)
@@ -55,12 +49,10 @@ namespace C_Sharp_Stickynotes.Presentation
                     case Button:
                         control.BackColor = c;
                         break;
+                    default:
+                        break;
                 }
             }
-
-            rtbNoteText.Text = noteText;
-            rtbNoteText.BackColor = c;
-            StickyNote_.BackColor = c;
 
         }
     }

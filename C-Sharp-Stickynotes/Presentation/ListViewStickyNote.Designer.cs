@@ -41,12 +41,12 @@ namespace C_Sharp_Stickynotes.Presentation
             this.StickyNote_.Controls.Add(this.rtbNoteText);
             this.StickyNote_.Controls.Add(this.btnDeleteNote);
             this.StickyNote_.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StickyNote_.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StickyNote_.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.StickyNote_.Location = new System.Drawing.Point(0, 0);
             this.StickyNote_.Margin = new System.Windows.Forms.Padding(0);
-            this.StickyNote_.MinimumSize = new System.Drawing.Size(480, 80);
+            this.StickyNote_.MinimumSize = new System.Drawing.Size(560, 92);
             this.StickyNote_.Name = "StickyNote_";
-            this.StickyNote_.Size = new System.Drawing.Size(480, 80);
+            this.StickyNote_.Size = new System.Drawing.Size(560, 92);
             this.StickyNote_.TabIndex = 3;
             // 
             // rtbNoteText
@@ -54,11 +54,11 @@ namespace C_Sharp_Stickynotes.Presentation
             this.rtbNoteText.BackColor = System.Drawing.Color.Yellow;
             this.rtbNoteText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbNoteText.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rtbNoteText.Location = new System.Drawing.Point(0, 22);
+            this.rtbNoteText.Location = new System.Drawing.Point(0, 25);
             this.rtbNoteText.Margin = new System.Windows.Forms.Padding(0);
-            this.rtbNoteText.MinimumSize = new System.Drawing.Size(480, 58);
+            this.rtbNoteText.MinimumSize = new System.Drawing.Size(560, 67);
             this.rtbNoteText.Name = "rtbNoteText";
-            this.rtbNoteText.Size = new System.Drawing.Size(480, 58);
+            this.rtbNoteText.Size = new System.Drawing.Size(560, 67);
             this.rtbNoteText.TabIndex = 2;
             this.rtbNoteText.Text = "";
             // 
@@ -69,11 +69,11 @@ namespace C_Sharp_Stickynotes.Presentation
             this.btnDeleteNote.BackColor = System.Drawing.Color.Transparent;
             this.btnDeleteNote.FlatAppearance.BorderSize = 0;
             this.btnDeleteNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteNote.Location = new System.Drawing.Point(448, 0);
+            this.btnDeleteNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDeleteNote.Location = new System.Drawing.Point(523, 0);
             this.btnDeleteNote.Margin = new System.Windows.Forms.Padding(0);
             this.btnDeleteNote.Name = "btnDeleteNote";
-            this.btnDeleteNote.Size = new System.Drawing.Size(32, 23);
+            this.btnDeleteNote.Size = new System.Drawing.Size(37, 27);
             this.btnDeleteNote.TabIndex = 1;
             this.btnDeleteNote.TabStop = false;
             this.btnDeleteNote.Text = "X";
@@ -81,12 +81,14 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // ListViewStickyNote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.StickyNote_);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ListViewStickyNote";
-            this.Size = new System.Drawing.Size(480, 80);
+            this.Size = new System.Drawing.Size(560, 92);
             this.Load += new System.EventHandler(this.ListViewStickyNote_Load);
+            this.Click += new System.EventHandler(this.ListViewStickyNote_Load);
             this.StickyNote_.ResumeLayout(false);
             this.StickyNote_.PerformLayout();
             this.ResumeLayout(false);
