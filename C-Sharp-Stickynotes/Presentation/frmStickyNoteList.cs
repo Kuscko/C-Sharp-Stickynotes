@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using StickyNotesLibrary;
@@ -21,12 +22,12 @@ namespace C_Sharp_Stickynotes.Presentation
         {
             SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
             stickyNoteModels = sqliteStickyNoteAccess.GetStickyNotes();
-            for (int i = 0; i < stickyNoteModels.Count; i++)
+            foreach (var v in stickyNoteModels)
             {
                 tblPanelStickyNoteList.RowCount++;
                 tblPanelStickyNoteList.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
                 //tblPanelStickyNoteList.Controls.Add(new ListViewStickyNote(stickyNoteModels[i].NoteID, stickyNoteModels[i].NoteText, stickyNoteModels[i].NoteColor), 0, tblPanelStickyNoteList.RowCount--);
-                tblPanelStickyNoteList.Controls.Add(new ListViewStickyNote(stickyNoteModels[i].NoteID, stickyNoteModels[i].NoteText, stickyNoteModels[i].NoteColor), 0, tblPanelStickyNoteList.RowCount--);
+                tblPanelStickyNoteList.Controls.Add(new ListViewStickyNote() { Text = v.NoteText, BackColor = Color.FromArgb(v.NoteColor) });
             }
         }
 

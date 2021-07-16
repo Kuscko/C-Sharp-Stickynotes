@@ -1,40 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace C_Sharp_Stickynotes.Presentation
 {
     public partial class ListViewStickyNote : UserControl
     {
-        private int noteID;
+        /*private int noteID;
         private string noteText;
-        private int noteColor;
+        private int noteColor;*/
 
         public ListViewStickyNote()
         {
             InitializeComponent();
         }
 
-        public ListViewStickyNote(int noteID, string noteText, int noteColor)
+        /*public ListViewStickyNote(int noteID, string noteText, int noteColor)
         {
             this.noteID = noteID;
             this.noteText = noteText;
             this.noteColor = noteColor;
-        }
+        }*/
 
-        private List<Control> GetAllChildControls(Control parent)
+        /*private List<Control> GetAllChildControls(Control parent)
         {
             List<Control> children = new List<Control>();
-            children.AddRange((IEnumerable<Control>)parent.Controls);
+            children.AddRange(parent.Controls.Cast<Control>());
             foreach (Control child in parent.Controls)
             {
                 children.AddRange(this.GetAllChildControls(child));
             }
             return children;
-        }
+        }*/
 
-        private void ListViewStickyNote_Load(object sender, EventArgs e)
+
+        /*
+            TODO: Initialization and creating new objects for each row works. however
+         */
+        /*private void ListViewStickyNote_Load(object sender, EventArgs e)
         {
             Color c = Color.FromArgb(noteColor);
             List<Control> children = GetAllChildControls(StickyNote_);
@@ -44,16 +49,15 @@ namespace C_Sharp_Stickynotes.Presentation
                 {
                     case RichTextBox:
                         control.Text = noteText;
-                        control.BackColor = c;
+                        //control.BackColor = c;
                         break;
                     case Button:
-                        control.BackColor = c;
+                        //control.BackColor = c;
                         break;
                     default:
                         break;
                 }
             }
-
-        }
+        }*/
     }
 }
