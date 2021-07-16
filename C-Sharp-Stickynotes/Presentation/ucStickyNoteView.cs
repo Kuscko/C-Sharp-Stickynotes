@@ -1,30 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace C_Sharp_Stickynotes.Presentation
 {
-    public partial class ListViewStickyNote : UserControl
+    public partial class ucStickyNoteView : UserControl
     {
-        /*private int noteID;
-        private string noteText;
-        private int noteColor;*/
-
-        public ListViewStickyNote()
+        private StickyNotesLibrary.StickyNoteModel Item;
+        public ucStickyNoteView(StickyNotesLibrary.StickyNoteModel item)
         {
+            Item = item;
             InitializeComponent();
         }
 
-        /*public ListViewStickyNote(int noteID, string noteText, int noteColor)
-        {
-            this.noteID = noteID;
-            this.noteText = noteText;
-            this.noteColor = noteColor;
-        }*/
-
-        /*private List<Control> GetAllChildControls(Control parent)
+        private List<Control> GetAllChildControls(Control parent)
         {
             List<Control> children = new List<Control>();
             children.AddRange(parent.Controls.Cast<Control>());
@@ -33,7 +28,29 @@ namespace C_Sharp_Stickynotes.Presentation
                 children.AddRange(this.GetAllChildControls(child));
             }
             return children;
-        }*/
+        }
+
+        private void ucStickyNoteView_Load(object sender, EventArgs e)
+        {
+            Color c = Color.FromArgb(Item.NoteColor);
+            List<Control> children = GetAllChildControls(btnDeleteNote.Parent);
+            foreach (Control control in children)
+            {
+                switch (control)
+                {
+                    case RichTextBox:
+                        control.Text = Item.NoteText;
+                        control.BackColor = c;
+                        break;
+                    case Button:
+                        control.BackColor = c;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+      
 
 
         /*

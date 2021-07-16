@@ -35,12 +35,11 @@ namespace StickyNotesLibrary
             }
         }
 
-        public void DeleteStickyNote(string text, StickyNoteModel sticky)
+        public void DeleteStickyNote(int id, StickyNoteModel stickyNote )
         {
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-
             }
         }
 

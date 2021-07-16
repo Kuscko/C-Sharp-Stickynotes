@@ -47,7 +47,7 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // panelStickyNoteControls
             // 
-            this.panelStickyNoteControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.panelStickyNoteControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelStickyNoteControls.BackColor = System.Drawing.Color.Khaki;
             this.panelStickyNoteControls.Controls.Add(this.btnClose);
@@ -62,14 +62,14 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.AutoSize = true;
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnClose.Location = new System.Drawing.Point(254, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
@@ -81,13 +81,13 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // btnCurrentNoteSettings
             // 
-            this.btnCurrentNoteSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.btnCurrentNoteSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCurrentNoteSettings.AutoSize = true;
             this.btnCurrentNoteSettings.BackColor = System.Drawing.Color.Transparent;
             this.btnCurrentNoteSettings.FlatAppearance.BorderSize = 0;
             this.btnCurrentNoteSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCurrentNoteSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCurrentNoteSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCurrentNoteSettings.Location = new System.Drawing.Point(218, 0);
             this.btnCurrentNoteSettings.Margin = new System.Windows.Forms.Padding(0);
             this.btnCurrentNoteSettings.Name = "btnCurrentNoteSettings";
@@ -99,13 +99,13 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // btnNewStickynote
             // 
-            this.btnNewStickynote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.btnNewStickynote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNewStickynote.AutoSize = true;
             this.btnNewStickynote.BackColor = System.Drawing.Color.Transparent;
             this.btnNewStickynote.FlatAppearance.BorderSize = 0;
             this.btnNewStickynote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewStickynote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewStickynote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnNewStickynote.Location = new System.Drawing.Point(0, 0);
             this.btnNewStickynote.Margin = new System.Windows.Forms.Padding(0);
             this.btnNewStickynote.Name = "btnNewStickynote";
@@ -117,8 +117,8 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // panelRichTextBox
             // 
-            this.panelRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panelRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRichTextBox.Controls.Add(this.rtbNotes);
             this.panelRichTextBox.Location = new System.Drawing.Point(0, 32);
@@ -152,11 +152,11 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             // mnuStripSettingsControls
             // 
-            this.mnuStripSettingsControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.mnuStripSettingsControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mnuStripSettingsControls.AutoSize = false;
             this.mnuStripSettingsControls.Dock = System.Windows.Forms.DockStyle.None;
-            this.mnuStripSettingsControls.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuStripSettingsControls.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuStripSettingsControls.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tStripViewNoteList,
             this.tStripDeleteNoteItem});
@@ -178,9 +178,8 @@ namespace C_Sharp_Stickynotes.Presentation
             // 
             this.tStripDeleteNoteItem.Name = "tStripDeleteNoteItem";
             this.tStripDeleteNoteItem.Padding = new System.Windows.Forms.Padding(0);
-            this.tStripDeleteNoteItem.Size = new System.Drawing.Size(112, 40);
+            this.tStripDeleteNoteItem.Size = new System.Drawing.Size(96, 40);
             this.tStripDeleteNoteItem.Text = "Delete Note";
-            this.tStripDeleteNoteItem.Click += new System.EventHandler(this.tStripDeleteNoteItem_Click);
             // 
             // frmStickyNote
             // 
@@ -193,7 +192,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.Controls.Add(this.flowNoteSettings);
             this.Controls.Add(this.panelStickyNoteControls);
             this.Controls.Add(this.panelRichTextBox);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(300, 100);
             this.Name = "frmStickyNote";

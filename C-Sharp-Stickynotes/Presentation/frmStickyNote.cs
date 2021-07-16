@@ -73,12 +73,7 @@ namespace C_Sharp_Stickynotes.Presentation
         private void tStripViewNoteList_Click(object sender, EventArgs e)
         {
             var newNoteList = new Thread(() => Application.Run(new frmStickyNoteList()));
-
             newNoteList.Start();
-        }
-
-        private void tStripDeleteNoteItem_Click(object sender, EventArgs e)
-        {
         }
     }
 }
