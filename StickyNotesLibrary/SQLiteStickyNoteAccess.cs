@@ -45,6 +45,13 @@ namespace StickyNotesLibrary
             }
         }
 
+        /// <summary>
+        /// Updates the local SQLite database using the existing note's ID.
+        /// </summary>
+        /// <param name="text">The existing text comes from the "rtbNotes.Text".</param>
+        /// <param name="color">The color is pulled from the parent BackColor of the sticky note then converted using .ToArgb().</param>
+        /// <param name="noteID">Note ID is from the StickyNoteModel.NoteID passed when the sticky note is loaded from the SQLite local database.</param>
+        /// <returns></returns>
         public async Task UpdateStickyNote(string text, int color, int noteID)
         {
             string sql = "UPDATE StickyNotes " +

@@ -55,7 +55,6 @@ namespace C_Sharp_Stickynotes.Presentation
             LoadNotes();
         }
 
-
         // Clear the list of notes from the Table Layout Panel then repopulate it with existing notes.
         void LoadNotes()
         {
