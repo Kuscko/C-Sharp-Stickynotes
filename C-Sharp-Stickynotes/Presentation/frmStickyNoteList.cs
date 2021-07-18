@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -41,14 +40,7 @@ namespace C_Sharp_Stickynotes.Presentation
         // It isn't updated the tablelayout control, figure this out. TODO:
         private void frmStickyNoteList_Load(object sender, EventArgs e)
         {
-            SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
-            stickyNoteModels = sqliteStickyNoteAccess.GetStickyNotes();
-            foreach (var item in stickyNoteModels)
-            {
-                tblPanelStickyNoteList.RowCount++;
-                tblPanelStickyNoteList.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-                tblPanelStickyNoteList.Controls.Add(new ucStickyNoteView(item));
-            }
+            LoadNotes();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -62,6 +54,19 @@ namespace C_Sharp_Stickynotes.Presentation
             newNote.Start();
         }
 
-        
+        void LoadNotes()
+        {
+            tblPanelStickyNoteList.RowCount = 1;
+            SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
+            stickyNoteModels = sqliteStickyNoteAccess.GetStickyNotes();
+            foreach (var item in stickyNoteModels)
+            {
+                tblPanelStickyNoteList.RowCount++;
+                tblPanelStickyNoteList.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                tblPanelStickyNoteList.Controls.Add(new ucStickyNoteView(item));
+            }
+        }
+
+
     }
 }

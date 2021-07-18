@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StickyNotesLibrary
@@ -23,7 +22,7 @@ namespace StickyNotesLibrary
         }
 
         // think whether save and update are necessary or simply one. How logic would look, update tomorrow TODO::
-        public async Task SaveStickyNoteAsync(String text, int color)
+        public async Task SaveStickyNoteAsync(string text, int color)
         {
             string sql = "INSERT INTO StickyNotes " +
                          "(NoteText, NoteColor) " +
@@ -31,24 +30,30 @@ namespace StickyNotesLibrary
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = await conn.ExecuteAsync(sql, new { noteText = text, noteColor = color });
+                await conn.ExecuteAsync(sql, new { noteText = text, noteColor = color });
             }
         }
 
-        public void DeleteStickyNote(int id, StickyNoteModel stickyNote )
+        public void DeleteStickyNote(int noteID)
         {
+            string sql = "DELETE FROM StickyNotes " +
+                         "WHERE NoteID = @id";
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
+                conn.Execute(sql, new { id = noteID });
             }
         }
 
-        public void UpdateStickyNote(StickyNoteModel sticky)
+        public void UpdateStickyNote(string text, int color, int noteID)
         {
+            string sql = "UPDATE StickyNotes " +
+                         "SET NoteText = @noteText, NoteColor = @noteColor " +
+                         "WHERE NoteID = @id";
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-
+                conn.ExecuteAsync(sql, new { noteText = text, noteColor = color, id = noteID});
             }
         }
 

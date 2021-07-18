@@ -119,6 +119,7 @@
             // 
             // tblPanelStickyNoteList
             // 
+            this.tblPanelStickyNoteList.AutoScroll = true;
             this.tblPanelStickyNoteList.ColumnCount = 1;
             this.tblPanelStickyNoteList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblPanelStickyNoteList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -127,7 +128,7 @@
             this.tblPanelStickyNoteList.Margin = new System.Windows.Forms.Padding(0);
             this.tblPanelStickyNoteList.Name = "tblPanelStickyNoteList";
             this.tblPanelStickyNoteList.RowCount = 1;
-            this.tblPanelStickyNoteList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblPanelStickyNoteList.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanelStickyNoteList.Size = new System.Drawing.Size(560, 477);
             this.tblPanelStickyNoteList.TabIndex = 3;
             // 
@@ -142,6 +143,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStickyNoteList";
             this.Load += new System.EventHandler(this.frmStickyNoteList_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNote_MouseDown);
             this.panelStickyNoteControls.ResumeLayout(false);
             this.panelStickyNoteControls.PerformLayout();
             this.panelStickyNoteList.ResumeLayout(false);
@@ -156,6 +158,6 @@
         private System.Windows.Forms.Button btnCurrentNoteSettings;
         private System.Windows.Forms.Button btnNewStickynote;
         private System.Windows.Forms.Panel panelStickyNoteList;
-        private System.Windows.Forms.TableLayoutPanel tblPanelStickyNoteList;
+        public System.Windows.Forms.TableLayoutPanel tblPanelStickyNoteList;
     }
 }

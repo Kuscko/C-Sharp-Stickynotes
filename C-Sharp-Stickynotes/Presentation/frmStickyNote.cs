@@ -1,5 +1,6 @@
 ﻿using StickyNotesLibrary;
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -8,6 +9,15 @@ namespace C_Sharp_Stickynotes.Presentation
 {
     public partial class frmStickyNote : Form
     {
+        // private declarations for StickyNoteModel holding this note's saved info, and if it's saved from NoteList form.
+        private StickyNoteModel StickyNote;
+        private bool Saved = false;
+
+        // private declarationis for sticky note text
+        private int ID;
+        private string NoteText;
+        private Color ColorCode;
+
         // constant Declarations, importing attributs and static int/bools for moving the sticky note
         // TODO: Move to own Class
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -16,6 +26,13 @@ namespace C_Sharp_Stickynotes.Presentation
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
+        public frmStickyNote(StickyNoteModel stickyNote, bool saved = false)
+        {
+            StickyNote = stickyNote;
+            Saved = saved;
+            InitializeComponent();
+        }
 
         public frmStickyNote()
         {
@@ -32,16 +49,24 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
-        // Close the Sticky Note Form
-        // TODO: ON FORM CLOSE - If Richtextbox is not empty, save stickynote text and data.
+        // Save sticky note if rich text box is not empty on close.
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (rtbNotes.Text != "")
+            if(Saved != false && rtbNotes.Text != StickyNote.NoteText)
             {
-                SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
-                sqliteStickyNoteAccess.SaveStickyNoteAsync(rtbNotes.Text, DefaultBackColor.ToArgb()).Wait();
+                Update();
+                Close();
             }
-            Close();
+            else if(Saved == false && rtbNotes.Text != "")
+            {
+                Save();
+                Close();
+            }
+            else
+            {
+                Close();
+            }
+            
         }
 
         // Create new sticky note form object on new thread
@@ -52,6 +77,7 @@ namespace C_Sharp_Stickynotes.Presentation
 
         }
 
+        // View Settings for sticky note(s)
         private void btnCurrentNoteSettings_Click(object sender, EventArgs e)
         {
             switch (flowNoteSettings.Visible)
@@ -65,15 +91,62 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
+        // hide settings when no longer focused.
         private void flowNoteSettings_Leave(object sender, EventArgs e)
         {
             flowNoteSettings.Visible = false;
         }
 
+        // View sticky note settings
         private void tStripViewNoteList_Click(object sender, EventArgs e)
         {
             var newNoteList = new Thread(() => Application.Run(new frmStickyNoteList()));
             newNoteList.Start();
+        }
+
+        private void tStripDeleteNoteItem_Click(object sender, EventArgs e)
+        {
+            if (Saved != false) {
+                SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
+                sqliteStickyNoteAccess.DeleteStickyNote(StickyNote.NoteID);
+            }
+        }
+
+        private void tStripSaveNoteItem_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        // Save sticky note if rich text box is not empty on close.
+        void Save()
+        {
+            if (rtbNotes.Text != "")
+            {
+                SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
+                sqliteStickyNoteAccess.SaveStickyNoteAsync(rtbNotes.Text, this.BackColor.ToArgb()).Wait();
+            }
+        }
+
+        new void Update()
+        {
+            if(rtbNotes.Text != "")
+            {
+                SQLiteStickyNoteAccess sqliteStickyNOteAccess = new SQLiteStickyNoteAccess();
+                sqliteStickyNOteAccess.UpdateStickyNote(rtbNotes.Text, this.BackColor.ToArgb(), StickyNote.NoteID);
+            }
+        }
+
+        private void frmStickyNote_Load(object sender, EventArgs e)
+        {
+            if(Saved != false)
+            {
+                ID = StickyNote.NoteID;
+                ColorCode = Color.FromArgb(StickyNote.NoteColor);
+                NoteText = StickyNote.NoteText;
+                rtbNotes.Text = NoteText;
+                rtbNotes.BackColor = ColorCode;
+                this.BackColor = ColorCode;
+            }
         }
     }
 }

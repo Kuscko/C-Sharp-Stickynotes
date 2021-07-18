@@ -39,6 +39,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.mnuStripSettingsControls = new System.Windows.Forms.MenuStrip();
             this.tStripViewNoteList = new System.Windows.Forms.ToolStripMenuItem();
             this.tStripDeleteNoteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStripSaveNoteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelStickyNoteControls.SuspendLayout();
             this.panelRichTextBox.SuspendLayout();
             this.flowNoteSettings.SuspendLayout();
@@ -56,7 +57,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.panelStickyNoteControls.Location = new System.Drawing.Point(0, 0);
             this.panelStickyNoteControls.Margin = new System.Windows.Forms.Padding(0);
             this.panelStickyNoteControls.Name = "panelStickyNoteControls";
-            this.panelStickyNoteControls.Size = new System.Drawing.Size(284, 31);
+            this.panelStickyNoteControls.Size = new System.Drawing.Size(375, 31);
             this.panelStickyNoteControls.TabIndex = 0;
             this.panelStickyNoteControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNote_MouseDown);
             // 
@@ -70,7 +71,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnClose.Location = new System.Drawing.Point(254, 0);
+            this.btnClose.Location = new System.Drawing.Point(343, 2);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(31, 30);
@@ -88,7 +89,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.btnCurrentNoteSettings.FlatAppearance.BorderSize = 0;
             this.btnCurrentNoteSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCurrentNoteSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCurrentNoteSettings.Location = new System.Drawing.Point(218, 0);
+            this.btnCurrentNoteSettings.Location = new System.Drawing.Point(313, 2);
             this.btnCurrentNoteSettings.Margin = new System.Windows.Forms.Padding(0);
             this.btnCurrentNoteSettings.Name = "btnCurrentNoteSettings";
             this.btnCurrentNoteSettings.Size = new System.Drawing.Size(30, 30);
@@ -123,7 +124,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.panelRichTextBox.Controls.Add(this.rtbNotes);
             this.panelRichTextBox.Location = new System.Drawing.Point(0, 32);
             this.panelRichTextBox.Name = "panelRichTextBox";
-            this.panelRichTextBox.Size = new System.Drawing.Size(284, 251);
+            this.panelRichTextBox.Size = new System.Drawing.Size(375, 251);
             this.panelRichTextBox.TabIndex = 1;
             // 
             // rtbNotes
@@ -133,7 +134,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.rtbNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbNotes.Location = new System.Drawing.Point(0, 0);
             this.rtbNotes.Name = "rtbNotes";
-            this.rtbNotes.Size = new System.Drawing.Size(284, 251);
+            this.rtbNotes.Size = new System.Drawing.Size(375, 251);
             this.rtbNotes.TabIndex = 0;
             this.rtbNotes.Text = "";
             // 
@@ -145,7 +146,7 @@ namespace C_Sharp_Stickynotes.Presentation
             this.flowNoteSettings.Location = new System.Drawing.Point(0, 0);
             this.flowNoteSettings.Margin = new System.Windows.Forms.Padding(0);
             this.flowNoteSettings.Name = "flowNoteSettings";
-            this.flowNoteSettings.Size = new System.Drawing.Size(284, 40);
+            this.flowNoteSettings.Size = new System.Drawing.Size(375, 40);
             this.flowNoteSettings.TabIndex = 1;
             this.flowNoteSettings.Visible = false;
             this.flowNoteSettings.Leave += new System.EventHandler(this.flowNoteSettings_Leave);
@@ -159,11 +160,12 @@ namespace C_Sharp_Stickynotes.Presentation
             this.mnuStripSettingsControls.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mnuStripSettingsControls.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tStripViewNoteList,
-            this.tStripDeleteNoteItem});
+            this.tStripDeleteNoteItem,
+            this.tStripSaveNoteItem});
             this.mnuStripSettingsControls.Location = new System.Drawing.Point(0, 0);
             this.mnuStripSettingsControls.Name = "mnuStripSettingsControls";
             this.mnuStripSettingsControls.Padding = new System.Windows.Forms.Padding(0);
-            this.mnuStripSettingsControls.Size = new System.Drawing.Size(284, 40);
+            this.mnuStripSettingsControls.Size = new System.Drawing.Size(375, 40);
             this.mnuStripSettingsControls.TabIndex = 0;
             // 
             // tStripViewNoteList
@@ -180,6 +182,14 @@ namespace C_Sharp_Stickynotes.Presentation
             this.tStripDeleteNoteItem.Padding = new System.Windows.Forms.Padding(0);
             this.tStripDeleteNoteItem.Size = new System.Drawing.Size(96, 40);
             this.tStripDeleteNoteItem.Text = "Delete Note";
+            this.tStripDeleteNoteItem.Click += new System.EventHandler(this.tStripDeleteNoteItem_Click);
+            // 
+            // tStripSaveNoteItem
+            // 
+            this.tStripSaveNoteItem.Name = "tStripSaveNoteItem";
+            this.tStripSaveNoteItem.Size = new System.Drawing.Size(93, 40);
+            this.tStripSaveNoteItem.Text = "Save Note";
+            this.tStripSaveNoteItem.Click += new System.EventHandler(this.tStripSaveNoteItem_Click);
             // 
             // frmStickyNote
             // 
@@ -187,15 +197,16 @@ namespace C_Sharp_Stickynotes.Presentation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(284, 284);
+            this.ClientSize = new System.Drawing.Size(375, 284);
             this.ControlBox = false;
             this.Controls.Add(this.flowNoteSettings);
             this.Controls.Add(this.panelStickyNoteControls);
             this.Controls.Add(this.panelRichTextBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(300, 100);
+            this.MinimumSize = new System.Drawing.Size(391, 100);
             this.Name = "frmStickyNote";
+            this.Load += new System.EventHandler(this.frmStickyNote_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNote_MouseDown);
             this.panelStickyNoteControls.ResumeLayout(false);
             this.panelStickyNoteControls.PerformLayout();
@@ -219,6 +230,7 @@ namespace C_Sharp_Stickynotes.Presentation
         private System.Windows.Forms.Button btnNewStickynote;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnCurrentNoteSettings;
+        private System.Windows.Forms.ToolStripMenuItem tStripSaveNoteItem;
     }
 }
 
