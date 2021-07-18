@@ -50,6 +50,7 @@
             this.panelStickyNoteControls.Name = "panelStickyNoteControls";
             this.panelStickyNoteControls.Size = new System.Drawing.Size(559, 36);
             this.panelStickyNoteControls.TabIndex = 1;
+            this.panelStickyNoteControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNoteList_MouseDown);
             // 
             // btnClose
             // 
@@ -103,7 +104,7 @@
             this.btnNewStickynote.TabIndex = 0;
             this.btnNewStickynote.Text = "+";
             this.btnNewStickynote.UseVisualStyleBackColor = false;
-            this.btnNewStickynote.Click += new System.EventHandler(this.btnNewStickynote_Click);
+            this.btnNewStickynote.Click += new System.EventHandler(this.BtnNewStickynote_Click);
             // 
             // panelStickyNoteList
             // 
@@ -131,6 +132,7 @@
             this.tblPanelStickyNoteList.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblPanelStickyNoteList.Size = new System.Drawing.Size(560, 477);
             this.tblPanelStickyNoteList.TabIndex = 3;
+            this.tblPanelStickyNoteList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNoteList_MouseDown);
             // 
             // frmStickyNoteList
             // 
@@ -143,7 +145,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmStickyNoteList";
             this.Load += new System.EventHandler(this.frmStickyNoteList_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNote_MouseDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmStickyNoteList_MouseDown);
             this.panelStickyNoteControls.ResumeLayout(false);
             this.panelStickyNoteControls.PerformLayout();
             this.panelStickyNoteList.ResumeLayout(false);

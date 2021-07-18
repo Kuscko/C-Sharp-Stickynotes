@@ -12,6 +12,9 @@ namespace C_Sharp_Stickynotes.Presentation
     public partial class ucStickyNoteView : UserControl
     {
         private StickyNotesLibrary.StickyNoteModel Item;
+
+        // local event handlers
+        public EventHandler DeleteNote;
         
         public ucStickyNoteView(StickyNotesLibrary.StickyNoteModel item)
         {
@@ -19,6 +22,8 @@ namespace C_Sharp_Stickynotes.Presentation
             InitializeComponent();
         }
 
+
+        // Gets the Children Controls of the given parent control paremeter.
         private List<Control> GetAllChildControls(Control parent)
         {
             List<Control> children = new List<Control>();
@@ -30,6 +35,7 @@ namespace C_Sharp_Stickynotes.Presentation
             return children;
         }
 
+        // populates each User Control with correct text inside the richTextBox and the correct corresponding colors.
         private void ucStickyNoteView_Load(object sender, EventArgs e)
         {
             Color c = Color.FromArgb(Item.NoteColor);
@@ -51,6 +57,7 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
+        // Delete the sticky note from the sqlite local server from the user control in the frmStickyNoteList
         private void btnDeleteNote_Click(object sender, EventArgs e)
         {
             DialogResult dialogConfirmation = MessageBox.Show("Are you sure you want to delete this sticky note?", "Delete Confirmation", 
@@ -58,10 +65,11 @@ namespace C_Sharp_Stickynotes.Presentation
             
             switch (dialogConfirmation)
             {
-                
                 case DialogResult.Yes:
                     SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
-                    sqliteStickyNoteAccess.DeleteStickyNote(Item.NoteID);
+                    sqliteStickyNoteAccess.DeleteStickyNote(Item.NoteID).Wait();
+                    if (DeleteNote != null)
+                        DeleteNote(this, e);
                     break;
                 default:
                     break;

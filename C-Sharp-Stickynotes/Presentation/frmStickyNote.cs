@@ -9,6 +9,8 @@ namespace C_Sharp_Stickynotes.Presentation
 {
     public partial class frmStickyNote : Form
     {
+        
+
         // private declarations for StickyNoteModel holding this note's saved info, and if it's saved from NoteList form.
         private StickyNoteModel StickyNote;
         private bool Saved = false;
@@ -27,6 +29,7 @@ namespace C_Sharp_Stickynotes.Presentation
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        // Individual frmStickyNote Loads for saved sticky notes and new sticky notes.
         public frmStickyNote(StickyNoteModel stickyNote, bool saved = false)
         {
             StickyNote = stickyNote;
@@ -52,7 +55,7 @@ namespace C_Sharp_Stickynotes.Presentation
         // Save sticky note if rich text box is not empty on close.
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if(Saved != false && rtbNotes.Text != StickyNote.NoteText)
+            if (Saved != false && rtbNotes.Text != StickyNote.NoteText)
             {
                 Update();
                 Close();
@@ -69,7 +72,7 @@ namespace C_Sharp_Stickynotes.Presentation
             
         }
 
-        // Create new sticky note form object on new thread
+        // Creates new a new stickynote form on a seperate threat.
         private void btnNewStickynote_Click(object sender, EventArgs e)
         {
             var newNote = new Thread(() => Application.Run(new frmStickyNote()));
@@ -91,12 +94,6 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
-        // hide settings when no longer focused.
-        private void flowNoteSettings_Leave(object sender, EventArgs e)
-        {
-            flowNoteSettings.Visible = false;
-        }
-
         // View sticky note settings
         private void tStripViewNoteList_Click(object sender, EventArgs e)
         {
@@ -104,17 +101,40 @@ namespace C_Sharp_Stickynotes.Presentation
             newNoteList.Start();
         }
 
-        private void tStripDeleteNoteItem_Click(object sender, EventArgs e)
+        // hide settings when no longer focused.
+        private void flowNoteSettings_Leave(object sender, EventArgs e)
         {
-            if (Saved != false) {
-                SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
-                sqliteStickyNoteAccess.DeleteStickyNote(StickyNote.NoteID);
+            flowNoteSettings.Visible = false;
+        }
+
+        // Deletes the this.frmStickyNote if it has been saved in the database already.
+        private void tStripDeleteNoteItem_Click(object sender, EventArgs e) { 
+            DialogResult dialogConfirmation = MessageBox.Show("Are you sure you want to delete this sticky note?", "Delete Confirmation", 
+                                                               MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            
+            switch (dialogConfirmation)
+            {
+                case DialogResult.Yes:
+                    Delete();
+                    break;
+                default:
+                    break;
             }
         }
 
-        private void tStripSaveNoteItem_Click(object sender, EventArgs e)
+
+        // Saves the this.frmStickyNote.
+        private void tStripSaveNoteItem_Click(object sender, EventArgs e) 
         {
-            Save();
+            if (Saved != false && rtbNotes.Text != StickyNote.NoteText)
+            {
+                Update();
+            }
+            else if (Saved == false && rtbNotes.Text != "")
+            {
+
+                Save();
+            }
         }
 
         // Save sticky note if rich text box is not empty on close.
@@ -127,15 +147,27 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
+        // Deletes Sticky Note if it has been saved in the database already.
+        void Delete()
+        {
+            if (Saved != false)
+            {
+                SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
+                sqliteStickyNoteAccess.DeleteStickyNote(StickyNote.NoteID).Wait();
+            }
+        }
+
+        // Updates the Sticky note whenever the sticky note is closed or the save button is pressed.
         new void Update()
         {
             if(rtbNotes.Text != "")
             {
                 SQLiteStickyNoteAccess sqliteStickyNOteAccess = new SQLiteStickyNoteAccess();
-                sqliteStickyNOteAccess.UpdateStickyNote(rtbNotes.Text, this.BackColor.ToArgb(), StickyNote.NoteID);
+                sqliteStickyNOteAccess.UpdateStickyNote(rtbNotes.Text, this.BackColor.ToArgb(), StickyNote.NoteID).Wait();
             }
         }
 
+        // If the Stickynote is located in the SQLite database then the sticky note text is popluated and arguments are assigned.
         private void frmStickyNote_Load(object sender, EventArgs e)
         {
             if(Saved != false)

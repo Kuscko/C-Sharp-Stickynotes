@@ -34,18 +34,18 @@ namespace StickyNotesLibrary
             }
         }
 
-        public void DeleteStickyNote(int noteID)
+        public async Task DeleteStickyNote(int noteID)
         {
             string sql = "DELETE FROM StickyNotes " +
                          "WHERE NoteID = @id";
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                conn.Execute(sql, new { id = noteID });
+                await conn.ExecuteAsync(sql, new { id = noteID });
             }
         }
 
-        public void UpdateStickyNote(string text, int color, int noteID)
+        public async Task UpdateStickyNote(string text, int color, int noteID)
         {
             string sql = "UPDATE StickyNotes " +
                          "SET NoteText = @noteText, NoteColor = @noteColor " +
@@ -53,7 +53,7 @@ namespace StickyNotesLibrary
             // use 'using' to reliable close connections to the database.
             using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
-                conn.ExecuteAsync(sql, new { noteText = text, noteColor = color, id = noteID});
+                await conn.ExecuteAsync(sql, new { noteText = text, noteColor = color, id = noteID });
             }
         }
 

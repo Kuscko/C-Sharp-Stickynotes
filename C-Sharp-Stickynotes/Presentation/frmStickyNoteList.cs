@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using StickyNotesLibrary;
+using C_Sharp_Stickynotes.Presentation;
 
 namespace C_Sharp_Stickynotes.Presentation
 {
@@ -13,6 +14,8 @@ namespace C_Sharp_Stickynotes.Presentation
         {
             InitializeComponent();
         }
+
+        private List<StickyNoteModel> stickyNoteModels = new List<StickyNoteModel>();
 
         // constant Declarations, importing attributs and static int/bools for moving the sticky note
         // TODO: Move to own Class
@@ -24,7 +27,7 @@ namespace C_Sharp_Stickynotes.Presentation
         public static extern bool ReleaseCapture();
 
         // Move form that doesn't have a boarder to click and drag.
-        private void frmStickyNote_MouseDown(object sender, MouseEventArgs e)
+        private void frmStickyNoteList_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -33,38 +36,44 @@ namespace C_Sharp_Stickynotes.Presentation
             }
         }
 
+        // Loads existing sticky notes from the local sqlite database.
+        private void frmStickyNoteList_Load(object sender, EventArgs e) => LoadNotes();
 
-        private List<StickyNoteModel> stickyNoteModels = new List<StickyNoteModel>();
+        // Closes the form
+        private void btnClose_Click(object sender, EventArgs e) => Close();
 
-
-        // It isn't updated the tablelayout control, figure this out. TODO:
-        private void frmStickyNoteList_Load(object sender, EventArgs e)
-        {
-            LoadNotes();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnNewStickynote_Click(object sender, EventArgs e)
+        // Creates new a new stickynote form on a seperate threat.
+        private void BtnNewStickynote_Click(object sender, EventArgs e)
         {
             var newNote = new Thread(() => Application.Run(new frmStickyNote()));
             newNote.Start();
         }
 
+        // If the user deletes a note from the list, the list updates using Load Notes.
+        internal void DeleteNoteEvent(object sender, EventArgs e)
+        {
+            LoadNotes();
+        }
+
+
+        // Clear the list of notes from the Table Layout Panel then repopulate it with existing notes.
         void LoadNotes()
         {
+            tblPanelStickyNoteList.Controls.Clear();
             tblPanelStickyNoteList.RowCount = 1;
             SQLiteStickyNoteAccess sqliteStickyNoteAccess = new SQLiteStickyNoteAccess();
             stickyNoteModels = sqliteStickyNoteAccess.GetStickyNotes();
+            
             foreach (var item in stickyNoteModels)
             {
+                ucStickyNoteView noteView = new ucStickyNoteView(item);
                 tblPanelStickyNoteList.RowCount++;
                 tblPanelStickyNoteList.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                tblPanelStickyNoteList.Controls.Add(new ucStickyNoteView(item));
+                tblPanelStickyNoteList.Controls.Add(noteView);
+                noteView.DeleteNote += DeleteNoteEvent;
             }
+            
+            
         }
 
 
