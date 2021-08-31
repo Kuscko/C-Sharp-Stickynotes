@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using StickyNotesLibrary;
-using C_Sharp_Stickynotes.Presentation;
 
 namespace C_Sharp_Stickynotes.Presentation
 {

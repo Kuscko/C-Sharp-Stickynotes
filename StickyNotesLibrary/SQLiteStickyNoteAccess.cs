@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StickyNotesLibrary
 {
-    public class SQLiteStickyNoteAccess
+    public class SQLiteStickyNoteAccess : StickyNoteModel
     {
         public List<StickyNoteModel> GetStickyNotes()
         {

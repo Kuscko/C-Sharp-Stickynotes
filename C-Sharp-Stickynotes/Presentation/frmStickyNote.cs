@@ -1,6 +1,7 @@
 ﻿using StickyNotesLibrary;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -164,6 +165,9 @@ namespace C_Sharp_Stickynotes.Presentation
             {
                 SQLiteStickyNoteAccess sqliteStickyNOteAccess = new SQLiteStickyNoteAccess();
                 sqliteStickyNOteAccess.UpdateStickyNote(rtbNotes.Text, this.BackColor.ToArgb(), StickyNote.NoteID).Wait();
+                // TODO: Update frmStickyNoteList on the seperate thread using delegate? More research required.
+
+
             }
         }
 
